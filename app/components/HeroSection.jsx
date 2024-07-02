@@ -2,7 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import { TypeAnimation } from "react-type-animation";
-import { Button } from "./MovingBorderButton";  // Assurez-vous de l'importer correctement selon votre structure de fichiers
+import { Button } from "./MovingBorderButton";
 
 const HeroSection = () => {
     return (
