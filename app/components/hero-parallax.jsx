@@ -78,7 +78,7 @@ export const HeroParallax = ({ products }) => {
         >
             {isSmallScreen ? (
                 <div className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full left-0 top-0">
-                    <h1 className="my-20 text-center text-4xl md:text-3xl sm:text-2xl">
+                    <h1 className="text-center text-white mb-4 text-4xl sm:text-6xl lg:text-7xl lg:leading-normal font-extrabold">
                         Mes Projets
                     </h1>
                     <div className="project-grid grid grid-cols-1 gap-16 md:grid-cols-2 mt-8">
@@ -126,30 +126,41 @@ export const HeroParallax = ({ products }) => {
 
 const SimpleProductCard = ({ product }) => {
     return (
-        <div className="flex flex-col mb-14 md:flex-col md:justify-between">
-            <h2 className="mb-4 text-xl font-bold">{product.title}</h2>
-            <div className="w-full md:w-full mb-4 md:mb-0">
+        <div className="group/product h-96 w-[28rem] relative flex-shrink-0">
+
                 <Image
                     src={product.thumbnail}
-                    height="400"
-                    width="400"
-                    className="object-cover"
+                    height="200"
+                    width="200"
+                    className="object-cover object-left-top absolute h-full w-full inset-0"
                     alt={product.title}
                 />
-            </div>
-            {product.technologies && (
-                <ul className="flex flex-wrap space-x-2 mt-4">
-                    {product.technologies.map((tech, index) => (
-                        <li
-                            key={index}
-                            className="bg-gray-200 text-gray-800 px-2 py-1 rounded mb-2"
-                        >
-                            {tech}
-                        </li>
-                    ))}
-                </ul>
-            )}
-        </div>
+                <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-black pointer-events-none"></div>
+                <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white">
+                    {product.title}
+                </h2>
+                <Link
+                    href={product.link}
+                    className="block group-hover/product:shadow-2xl"
+                >
+                    <h2 className="absolute top-4 left-4 opacity-0 group-hover/product:opacity-100 text-white">
+                        Consulter le projet
+                    </h2>
+                </Link>
+                {product.technologies && (
+                    <ul className="absolute bottom-4 right-4 opacity-0 group-hover/product:opacity-100 text-white flex space-x-2">
+                        {product.technologies.map((tech, index) => (
+                            <li
+                                key={index}
+                                className="bg-white text-black px-2 py-1 rounded"
+                            >
+                                {tech}
+                            </li>
+                        ))}
+                    </ul>
+                )}
+
+    </div>
     );
 };
 
