@@ -27,10 +27,11 @@ const HeroSection = () => {
                         />
                     </h1>
                     <p className="text-[#ADB7BE] text-base sm:text-lg mb-6 lg:text-xl"> Je suis un futur développeur web fullstack.</p>
-                    <div>
+                    <div className="flex gap-5">
                         <Button borderRadius="1.75rem" className="bg-gradient-to-br from-blue-200 via-purple-300 to-pink-400 text-black">
                             Contactez moi
                         </Button>
+
                         <Button borderRadius="1.75rem" className="bg-transparent text-white border border-white hover:border-transparent">
                             Télécharger mon CV
                         </Button>
