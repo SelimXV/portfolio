@@ -6,7 +6,7 @@ export const fetchProject = async () => {
         content_type: "project",
     });
 
-    return entries.items; // Retourner directement le tableau des projets
+    return entries.items;
 }
 
 export default fetchProject;

@@ -13,7 +13,7 @@ export default async function Home() {
         <main className="flex min-h-screen flex-col bg-[#121212]">
             <Navbar />
             <BackgroundBeams className="fixed z-0" />
-            <div className="container mt-24 mx-auto px-12 py-4 z-10 relative">
+            <div className="container mt-24 mx-auto px-6 py-4 z-10 relative">
                 <HeroSection />
             </div>
             <div className="flex-grow overflow-y-auto z-10 relative">

@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@contentful/rich-text-react-renderer": "^15.22.11",
     "@fortawesome/fontawesome-free-regular": "^5.0.13",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@heroicons/react": "^2.1.3",

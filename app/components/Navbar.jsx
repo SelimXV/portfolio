@@ -12,7 +12,7 @@ const navLinks = [
     },
     {
         title: "Projets",
-        href: "/hero-parallax",
+        href: "/projects/ProjectCard",
     },
     {
         title: "Contact",
