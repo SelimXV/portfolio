@@ -32,12 +32,12 @@ const HeroSection = () => {
                                 />
                             </span>
                         </h1>
-                        <p className="text-[#ADB7BE] text-xs sm:text-sm md:text-base mb-6 lg:text-xl">
+                        <p className="text-[#ADB7BE] text-base sm:text-lg mb-6 lg:text-xl">
                             Je suis un futur développeur web fullstack.
                         </p>
 
-                        {/* Boutons d'action */}
-                        <div className="flex gap-2 sm:gap-5 justify-center sm:justify-start">
+
+                        <div className="flex gap-5 justify-center sm:justify-start">
                             <Button
                                 borderRadius="1.75rem"
                                 className="bg-gradient-to-br from-blue-200 via-purple-300 to-pink-400 text-black">
@@ -56,7 +56,7 @@ const HeroSection = () => {
 
                 <div className="col-span-5 place-self-center sm:pl-20 mt-4 lg:mt-0 flex justify-center lg:justify-end relative">
                     <div className="rounded-full bg-[#181818] bg-opacity-40 w-[250px] h-[250px] lg:w-[400px] lg:h-[400px] relative flex justify-center items-center">
-                        {/* Image centrale */}
+
                         <Image
                             src="/images/hero-image.jpeg"
                             alt="hero image"
