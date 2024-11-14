@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { FaJava, FaReact, FaNodeJs, FaCss3Alt, FaHtml5 } from 'react-icons/fa';
+import {FaC} from "react-icons/fa6";
 
 const InfoSection = () => {
     const [selectedSection, setSelectedSection] = useState("experience");
@@ -10,17 +11,19 @@ const InfoSection = () => {
         experience: {
             title: "Experience",
             items: [
-                { title: "Développeur Junior", year: "2023" },
-                { title: "Stage en entreprise", year: "2022" },
-                { title: "Développeur Web", year: "2021" },
-                { title: "Développeur Frontend", year: "2020" },
+                { title: "Alternant Chef de Projet", year: "2024" },
+                { title: "Stage en entreprise", year: "2023" },
+                { title: "Apprentissage Ingénieurie", year: "2022" },
+                { title: "Etudiant", year: "2021" },
             ],
         },
         education: {
             title: "Education",
             items: [
-                { title: "Lycée Example", year: "2021" },
-                { title: "Université Example", year: "2022" },
+                { title: "Lycée Charles de Gaulle Poissy", year: "2021" },
+                { title: "Prépa Intégrée Cy-Tech Cergy", year: "2022" },
+                { title: "BTS SIO SLAM 1 ENSITECH Cergy", year: "2023" },
+                { title: "BTS SIO SLAM 2 ENSITECH Cergy", year: "2024" },
             ],
         },
         skills: {
@@ -31,6 +34,7 @@ const InfoSection = () => {
                 { icon: <FaReact />, title: "React" },
                 { icon: <FaNodeJs />, title: "Node.js" },
                 { icon: <FaJava />, title: "Java" },
+                { icon: <FaC/>, title: "C" },
             ],
         },
         about: {
