@@ -5,25 +5,27 @@ import BackgroundBeams from "./components/Background-Beams";
 import ProjectList from "@/app/contentful/test";
 import { fetchProject } from "@/app/contentful/fetchproject";
 import ProjectCard from "@/app/projects/ProjectCard";
+import InfoSection from "@/app/components/InfoSection";
 
 export default async function Home() {
     const projects = await fetchProject();
 
     return (
         <main className="flex min-h-screen flex-col bg-[#121212]">
-            <Navbar />
-            <BackgroundBeams className="fixed z-0" />
+            <Navbar/>
+            <BackgroundBeams className="fixed z-0"/>
             <div className="container mt-24 mx-auto px-6 py-4 z-10 relative">
-                <HeroSection />
+                <HeroSection/>
+            </div>
+            <div className="container mx-auto px-6 py-12 z-10 relative">
+                <InfoSection/>
             </div>
             <div className="flex-grow overflow-y-auto z-10 relative">
-                <ProjectCard projects={projects} />
+                <ProjectCard projects={projects}/>
             </div>
         </main>
     );
 }
-
-
 
 
 export const products = [
