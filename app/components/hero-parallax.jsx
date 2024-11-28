@@ -182,46 +182,27 @@ export const ProductCard = ({ product, translate }) => {
         <motion.div
             style={{
                 x: translate,
+                border: "5px solid red", // Ligne temporaire pour débogage
             }}
             whileHover={{
-                y: -20,
+                scale: 1.05,
+                zIndex: 10,
             }}
-            key={product.title}
             className="group/product h-96 w-[28rem] relative flex-shrink-0"
         >
             <Image
                 src={product.thumbnail}
                 height="200"
                 width="200"
-                className="object-cover object-left-top absolute h-full w-full inset-0"
+                className="object-cover object-left-top absolute h-full w-full inset-0 transition-transform duration-200 ease-in-out"
                 alt={product.title}
             />
-            <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-black pointer-events-none"></div>
-            <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white">
-                {product.title}
-            </h2>
-            <Link
-                href={product.link}
-                className="block group-hover/product:shadow-2xl"
-            >
-                <h2 className="absolute top-4 left-4 opacity-0 group-hover/product:opacity-100 text-white">
-                    Consulter le projet
-                </h2>
-            </Link>
-            {product.technologies && (
-                <ul className="absolute bottom-4 right-4 opacity-0 group-hover/product:opacity-100 text-white flex space-x-2">
-                    {product.technologies.map((tech, index) => (
-                        <li
-                            key={index}
-                            className="bg-white text-black px-2 py-1 rounded"
-                        >
-                            {tech}
-                        </li>
-                    ))}
-                </ul>
-            )}
         </motion.div>
     );
 };
+
+
+
+
 
 export default HeroParallax;

@@ -1,8 +1,10 @@
 "use client";
+
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { FaJava, FaReact, FaNodeJs, FaCss3Alt, FaHtml5 } from 'react-icons/fa';
-import {FaC} from "react-icons/fa6";
+import { AnimatePresence, motion } from "framer-motion";
+import Link from "next/link";
+import { FaHtml5, FaCss3Alt, FaReact, FaNodeJs, FaJava, FaC } from "react-icons/fa";
+import HoverEffect from "./HoverEffect"; // Ensure correct import path
 
 const InfoSection = () => {
     const [selectedSection, setSelectedSection] = useState("experience");
@@ -11,30 +13,30 @@ const InfoSection = () => {
         experience: {
             title: "Experience",
             items: [
-                { title: "Alternant Chef de Projet", year: "2024" },
-                { title: "Stage en entreprise", year: "2023" },
-                { title: "Apprentissage Ingénieurie", year: "2022" },
-                { title: "Etudiant", year: "2021" },
+                { title: "Alternant Chef de Projet", year: "2024", link: "#" },
+                { title: "Stage en entreprise", year: "2023", link: "#" },
+                { title: "Apprentissage Ingénieurie", year: "2022", link: "#" },
+                { title: "Étudiant", year: "2021", link: "#" },
             ],
         },
         education: {
             title: "Education",
             items: [
-                { title: "Lycée Charles de Gaulle Poissy", year: "2021" },
-                { title: "Prépa Intégrée Cy-Tech Cergy", year: "2022" },
-                { title: "BTS SIO SLAM 1 ENSITECH Cergy", year: "2023" },
-                { title: "BTS SIO SLAM 2 ENSITECH Cergy", year: "2024" },
+                { title: "Lycée Charles de Gaulle Poissy", year: "2021", link: "#" },
+                { title: "Prépa Intégrée Cy-Tech Cergy", year: "2022", link: "#" },
+                { title: "BTS SIO SLAM 1 ENSITECH Cergy", year: "2023", link: "#" },
+                { title: "BTS SIO SLAM 2 ENSITECH Cergy", year: "2024", link: "#" },
             ],
         },
         skills: {
             title: "Skills",
             items: [
-                { icon: <FaHtml5 />, title: "HTML5" },
-                { icon: <FaCss3Alt />, title: "CSS3" },
-                { icon: <FaReact />, title: "React" },
-                { icon: <FaNodeJs />, title: "Node.js" },
-                { icon: <FaJava />, title: "Java" },
-                { icon: <FaC/>, title: "C" },
+                { icon: <FaHtml5 />, title: "HTML5", description: "Markup language for web pages", link: "#" },
+                { icon: <FaCss3Alt />, title: "CSS3", description: "Style sheet language for styling", link: "#" },
+                { icon: <FaReact />, title: "React", description: "JavaScript library for building UIs", link: "#" },
+                { icon: <FaNodeJs />, title: "Node.js", description: "JavaScript runtime built on Chrome's V8", link: "#" },
+                { icon: <FaJava />, title: "Java", description: "High-level programming language", link: "#" },
+                { icon: <FaC />, title: "C", description: "General-purpose programming language", link: "#" },
             ],
         },
         about: {
@@ -58,9 +60,9 @@ const InfoSection = () => {
 
         if (selectedSection === "about") {
             return (
-                <div>
-                    <h2 className="text-3xl font-semibold mb-4 text-white">{section.title}</h2>
-                    <p className="text-gray-400 mb-8">{section.description}</p>
+                <div className="bg-transparent p-4 rounded-2xl border border-blue-500">
+                    <h2 className="text-4xl font-bold mb-4 text-white">{section.title}</h2>
+                    <p className="text-gray-300 mb-8">{section.description}</p>
                     <div className="grid grid-cols-2 gap-4">
                         {section.details.map((detail, index) => (
                             <div key={index} className="text-white">
@@ -71,55 +73,39 @@ const InfoSection = () => {
                     </div>
                 </div>
             );
-        } else {
-            return (
-                <div>
-                    <h2 className="text-3xl font-semibold mb-4 text-white">{section.title}</h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-4">
-                        {section.items.map((item, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.3 }}
-                                className="p-4 border-2 border-gray-500 rounded-lg hover:border-green-500 transition-all duration-300 transform hover:scale-105"
-                            >
-                                {selectedSection === "skills" ? (
-                                    <div className="flex flex-col items-center">
-                                        <div className="text-5xl mb-3 text-green-500">{item.icon}</div>
-                                        <span className="text-white font-medium">{item.title}</span>
-                                    </div>
-                                ) : (
-                                    <>
-                                        <div className="year text-green-500 text-lg font-bold">{item.year}</div>
-                                        <div className="title text-white text-md mt-2">{item.title}</div>
-                                    </>
-                                )}
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            );
         }
+
+        return (
+            <HoverEffect
+                items={section.items.map(item => ({
+                    title: item.title,
+                    description: selectedSection === "skills" ? item.description : item.year,
+                    icon: item.icon,
+                    link: item.link
+                }))}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-10 gap-4"
+            />
+        );
     };
 
     return (
-        <div className="flex flex-col md:flex-row gap-8 p-8 bg-transparent rounded-lg shadow-lg">
-            {/* Boutons */}
+        <section id="info-section" className="flex flex-col md:flex-row gap-8 p-8 bg-transparent rounded-lg shadow-lg border border-blue-500">
             <div className="flex flex-col space-y-4">
-                {["experience", "education", "skills", "about"].map((section) => (
+                {Object.keys(sections).map((sectionKey) => (
                     <button
-                        key={section}
-                        onClick={() => setSelectedSection(section)}
-                        className={`py-3 px-6 text-lg rounded-lg transition-all duration-300 
-                            ${selectedSection === section ? 'bg-green-500 text-black font-semibold' : 'bg-transparent text-white hover:bg-gray-700 border-2 border-gray-500 hover:border-green-500'}`}
+                        key={sectionKey}
+                        onClick={() => setSelectedSection(sectionKey)}
+                        className={`py-3 px-6 text-lg rounded-lg transition-all duration-300 ${
+                            selectedSection === sectionKey
+                                ? "bg-green-500 text-black font-semibold"
+                                : "bg-transparent text-white hover:bg-gray-700 border-2 border-gray-500 hover:border-green-500"
+                        }`}
                     >
-                        {section.charAt(0).toUpperCase() + section.slice(1)}
+                        {sectionKey.charAt(0).toUpperCase() + sectionKey.slice(1)}
                     </button>
                 ))}
             </div>
 
-            {/* Contenu */}
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -127,7 +113,7 @@ const InfoSection = () => {
             >
                 {renderContent()}
             </motion.div>
-        </div>
+        </section>
     );
 };
 

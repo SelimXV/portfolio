@@ -27,8 +27,8 @@ export const ProjectCard = ({ projects }) => {
         console.log(projects);
     }, [projects]);
 
-    const firstRow = projects.slice(0, 2);
-    const secondRow = projects.slice(2, 4);
+    const firstRow = projects.slice(0, 3);
+    const secondRow = projects.slice(3, 5);
     const ref = React.useRef(null);
     const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
 
@@ -68,13 +68,27 @@ export const ProjectCard = ({ projects }) => {
                     <Header />
                     <motion.div style={{ rotateX, rotateZ, translateY, opacity }} className="">
                         <motion.div className="flex flex-row-reverse space-x-reverse space-x-8 mb-16 lg:mb-20">
-                            {firstRow.map((project) => (
-                                <ProductCard project={project} translate={translateX} key={project.sys.id} />
+                            {firstRow.map((project, index) => (
+                                <ProductCard
+                                    project={project}
+                                    translate={translateX}
+                                    key={project.sys.id}
+                                    hovered={hovered}
+                                    setHovered={setHovered}
+                                    index={index}
+                                />
                             ))}
                         </motion.div>
                         <motion.div className="flex flex-row space-x-8 mb-16 lg:mb-20">
-                            {secondRow.map((project) => (
-                                <ProductCard project={project} translate={translateXReverse} key={project.sys.id} />
+                            {secondRow.map((project, index) => (
+                                <ProductCard
+                                    project={project}
+                                    translate={translateXReverse}
+                                    key={project.sys.id}
+                                    hovered={hovered}
+                                    setHovered={setHovered}
+                                    index={index}
+                                />
                             ))}
                         </motion.div>
                     </motion.div>
@@ -84,13 +98,12 @@ export const ProjectCard = ({ projects }) => {
     );
 };
 
-
 const SingleProjectCard = ({ project, index, hovered, setHovered }) => {
     const { title, technologies, thumbnail, slug, link } = project.fields;
 
     return (
         <div
-            onMouseEnter={() => setHovered(index)}
+            onMouseEnter ={() => setHovered(index)}
             onMouseLeave={() => setHovered(null)}
             className={cn(
                 "relative bg-gray-100 dark:bg-neutral-900 overflow-hidden h-52 sm:h-56 md:h-64 lg:h-70 xl:h-72 w-[12rem] sm:w-[14rem] md:w-[18rem] lg:w-[22rem] xl:w-[28rem] rounded-lg transition-all duration-300 ease-out",
@@ -136,13 +149,11 @@ const SingleProjectCard = ({ project, index, hovered, setHovered }) => {
                             </span>
                         ))}
                     </div>
-
                 )}
             </div>
         </div>
     );
 };
-
 
 export const Header = () => (
     <div className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full left-0 top-0">
@@ -153,24 +164,33 @@ export const Header = () => (
     </div>
 );
 
-export const ProductCard = ({ project, translate }) => {
+export const ProductCard = ({ project, translate, hovered, setHovered, index }) => {
     const { title, technologies, featuredImage, slug, link } = project.fields;
 
     return (
         <motion.div
             style={{ x: translate }}
-            whileHover={{ y: -20 }}
+            whileHover={{ scale: 1.02 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
             key={project.sys.id}
-            className="group/product h-96 w-[28rem] relative flex-shrink-0"
+            className={cn(
+                "relative bg-gray-100 dark:bg-neutral-900 overflow-hidden h-52 sm:h-56 md:h-64 lg:h-70 xl:h-72 w-[12rem] sm:w-[14rem] md:w-[18rem] lg:w-[22rem] xl:w-[28rem] rounded-lg transition-all duration-300 ease-out",
+                hovered !== null && hovered !== index && "blur-sm scale-[0.98]",
+                hovered === index && "scale-[1.02]"
+            )}
+            onMouseEnter={() => setHovered(index)}
+            onMouseLeave={() => setHovered(null)}
         >
             <Image
                 src={"https:" + featuredImage.fields.file.url}
                 width={featuredImage.fields.file.details.image.width}
                 height={featuredImage.fields.file.details.image.height}
-                className="object-cover object-left-top absolute h-full w-full inset-0"
+                className="object-cover absolute h-full w-full inset-0 rounded-lg"
                 alt={title}
             />
-            <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-90 bg-black transition-opacity duration-300 flex flex-col justify-center items-center space-y-4">
+            <div className="absolute inset-0 bg-black/50 flex flex-col justify-center items-center opacity-0 hover:opacity-100 transition-opacity duration-300">
                 <Link href={"/projects/" + slug}>
                     <h2 className="text-white bg-blue-600 px-4 py-2 rounded-lg shadow-lg text-lg font-semibold hover:bg-blue-700 transition-colors duration-200">
                         Consulter le projet
@@ -182,14 +202,14 @@ export const ProductCard = ({ project, translate }) => {
                     </h2>
                 </Link>
             </div>
+            <div className="absolute top-4 left-4 text-white">
+                <h2 className="font-bold bg-black bg-opacity-50 px-3 py-1 rounded">{title}</h2>
+            </div>
             <div className="absolute bottom-4 left-4 text-white">
-                <h2 className="text-lg font-bold bg-black bg-opacity-60 px-3 py-1 rounded shadow-lg">
-                    {title}
-                </h2>
                 {technologies && (
                     <div className="flex space-x-2 mt-2">
                         {technologies.map((technology) => (
-                            <span key={technology} className="bg-white text-black px-2 py-1 rounded">
+                            <span key={technology} className="bg-white text-black px-2 py-1 rounded text-xs lg:text-sm">
                                 {technology}
                             </span>
                         ))}

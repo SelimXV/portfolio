@@ -10,7 +10,7 @@ const HeroSection = () => {
             <div className="grid grid-cols-1 sm:grid-cols-12 items-center">
                 <div className="col-span-7 place-self-center text-center sm:text-left relative z-10">
                     <div className="relative max-w-lg mx-auto sm:mx-0">
-                        <h1 className="text-white mb-4 text-3xl sm:text-5xl lg:text-6xl  lg:leading-normal font-extrabold">
+                        <h1 className="text-white mb-4 text-3xl sm:text-5xl lg:text-6xl lg:leading-normal font-extrabold">
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-purple-300 to-pink-400">
                                 Bonjour, je suis
                             </span>
@@ -36,7 +36,6 @@ const HeroSection = () => {
                             Je suis un futur développeur web fullstack.
                         </p>
 
-
                         <div className="flex gap-5 justify-center sm:justify-start">
                             <Button
                                 borderRadius="1.75rem"
@@ -49,14 +48,23 @@ const HeroSection = () => {
                                 className="bg-transparent text-white border border-white hover:border-transparent">
                                 Téléchargez mon CV
                             </Button>
+
+                            <a
+                                href="/documents/Tableau%20Synthèse.xlsx"
+                                download
+                            >
+                                <Button
+                                    borderRadius="1.75rem"
+                                    className="bg-transparent text-white border border-white hover:border-transparent">
+                                    Téléchargez ma liste de projets
+                                </Button>
+                            </a>
                         </div>
                     </div>
                 </div>
 
-
                 <div className="col-span-5 place-self-center sm:pl-20 mt-4 lg:mt-0 flex justify-center lg:justify-end relative">
                     <div className="rounded-full bg-[#181818] bg-opacity-40 w-[250px] h-[250px] lg:w-[400px] lg:h-[400px] relative flex justify-center items-center">
-
                         <Image
                             src="/images/hero-image.jpeg"
                             alt="hero image"
@@ -71,6 +79,5 @@ const HeroSection = () => {
         </section>
     );
 };
-
 
 export default HeroSection;
