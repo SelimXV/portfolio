@@ -1,7 +1,7 @@
 import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
 import { HeroParallax } from "./components/hero-parallax";
-import BackgroundBeams from "./components/Background-Beams";
+import BackgroundBeams from "./components/background-beams";
 import ProjectList from "@/app/contentful/test";
 import { fetchProject } from "@/app/contentful/fetchproject";
 import ProjectCard from "@/app/projects/ProjectCard";
