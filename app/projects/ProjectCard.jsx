@@ -28,7 +28,7 @@ export const ProjectCard = ({ projects }) => {
     }, [projects]);
 
     const firstRow = projects.slice(0, 3);
-    const secondRow = projects.slice(3, 5);
+    const secondRow = projects.slice(3, 6);
     const ref = React.useRef(null);
     const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
 
@@ -66,16 +66,16 @@ export const ProjectCard = ({ projects }) => {
             ) : (
                 <>
                     <Header />
-                    <motion.div style={{ rotateX, rotateZ, translateY, opacity }} className="">
+                    <motion.div style={{rotateX, rotateZ, translateY, opacity}} className="">
                         <motion.div className="flex flex-row-reverse space-x-reverse space-x-8 mb-16 lg:mb-20">
                             {firstRow.map((project, index) => (
                                 <ProductCard
                                     project={project}
                                     translate={translateX}
-                                    key={project.sys.id}
+                                    key={`${project.sys.id}-${index}`}
                                     hovered={hovered}
                                     setHovered={setHovered}
-                                    index={index}
+                                    index={`${project.sys.id}-${index}`}
                                 />
                             ))}
                         </motion.div>
@@ -84,10 +84,10 @@ export const ProjectCard = ({ projects }) => {
                                 <ProductCard
                                     project={project}
                                     translate={translateXReverse}
-                                    key={project.sys.id}
+                                    key={`${project.sys.id}-${index}`}
                                     hovered={hovered}
                                     setHovered={setHovered}
-                                    index={index}
+                                    index={`${project.sys.id}-${index}`}
                                 />
                             ))}
                         </motion.div>
@@ -98,12 +98,12 @@ export const ProjectCard = ({ projects }) => {
     );
 };
 
-const SingleProjectCard = ({ project, index, hovered, setHovered }) => {
-    const { title, technologies, thumbnail, slug, link } = project.fields;
+const SingleProjectCard = ({project, index, hovered, setHovered}) => {
+    const {title, technologies, thumbnail, slug, link} = project.fields;
 
     return (
         <div
-            onMouseEnter ={() => setHovered(index)}
+            onMouseEnter={() => setHovered(index)}
             onMouseLeave={() => setHovered(null)}
             className={cn(
                 "relative bg-gray-100 dark:bg-neutral-900 overflow-hidden h-52 sm:h-56 md:h-64 lg:h-70 xl:h-72 w-[12rem] sm:w-[14rem] md:w-[18rem] lg:w-[22rem] xl:w-[28rem] rounded-lg transition-all duration-300 ease-out",
@@ -169,19 +169,26 @@ export const ProductCard = ({ project, translate, hovered, setHovered, index }) 
 
     return (
         <motion.div
-            style={{ x: translate }}
+            style={{ x: translate
+                }}
             whileHover={{ scale: 1.02 }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             key={project.sys.id}
+
             className={cn(
                 "relative bg-gray-100 dark:bg-neutral-900 overflow-hidden h-52 sm:h-56 md:h-64 lg:h-70 xl:h-72 w-[12rem] sm:w-[14rem] md:w-[18rem] lg:w-[22rem] xl:w-[28rem] rounded-lg transition-all duration-300 ease-out",
                 hovered !== null && hovered !== index && "blur-sm scale-[0.98]",
                 hovered === index && "scale-[1.02]"
             )}
-            onMouseEnter={() => setHovered(index)}
-            onMouseLeave={() => setHovered(null)}
+            onMouseEnter={() => {
+                setHovered(index);
+            }}
+            onMouseLeave={() => {
+                setHovered(null);
+            }}
+
         >
             <Image
                 src={"https:" + featuredImage.fields.file.url}

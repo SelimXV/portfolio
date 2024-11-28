@@ -4,7 +4,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { FaHtml5, FaCss3Alt, FaReact, FaNodeJs, FaJava, FaC } from "react-icons/fa";
-import HoverEffect from "./HoverEffect"; // Ensure correct import path
+import HoverEffect from "./HoverEffect";
 
 const InfoSection = () => {
     const [selectedSection, setSelectedSection] = useState("experience");
