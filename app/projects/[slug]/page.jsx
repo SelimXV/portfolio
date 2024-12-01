@@ -2,12 +2,56 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/app/components/Navbar";
-
 import { fetchProject } from "@/app/contentful/fetchproject";
+import { BLOCKS, INLINES } from "@contentful/rich-text-types"; // Import des types
 
+const renderOptions = {
+    renderNode: {
+        [BLOCKS.PARAGRAPH]: (node, children) => (
+            <p className="mb-4 leading-relaxed text-gray-300">{children}</p>
+        ),
 
-
-
+        [BLOCKS.HEADING_1]: (node, children) => (
+            <h1 className="text-3xl font-bold mb-6">{children}</h1>
+        ),
+        [BLOCKS.HEADING_2]: (node, children) => (
+            <h2 className="text-2xl font-semibold mb-5">{children}</h2>
+        ),
+        [BLOCKS.HEADING_3]: (node, children) => (
+            <h3 className="text-xl font-medium mb-4">{children}</h3>
+        ),
+        [BLOCKS.HEADING_4]: (node, children) => (
+            <h4 className="text-lg font-semibold mb-3">{children}</h4>
+        ),
+        [BLOCKS.HEADING_5]: (node, children) => (
+            <h5 className="text-base font-medium mb-2">{children}</h5>
+        ),
+        [BLOCKS.HEADING_6]: (node, children) => (
+            <h6 className="text-sm font-bold mb-1">{children}</h6>
+        ),
+        // Listes
+        [BLOCKS.UL_LIST]: (node, children) => (
+            <ul className="list-disc ml-5 mb-4">{children}</ul>
+        ),
+        [BLOCKS.OL_LIST]: (node, children) => (
+            <ol className="list-decimal ml-5 mb-4">{children}</ol>
+        ),
+        [BLOCKS.LIST_ITEM]: (node, children) => (
+            <li className="mb-2">{children}</li>
+        ),
+        // Hyperliens
+        [INLINES.HYPERLINK]: (node, children) => (
+            <a
+                href={node.data.uri}
+                className="text-blue-500 underline hover:text-blue-700"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                {children}
+            </a>
+        ),
+    },
+};
 
 const Page = async ({ params }) => {
     const project = await fetchProject();
@@ -44,7 +88,7 @@ const Page = async ({ params }) => {
                 </div>
 
                 <div className="text-lg md:text-xl leading-relaxed text-white dark:text-white mb-8">
-                    {documentToReactComponents(method)}
+                    {documentToReactComponents(method, renderOptions)}
                 </div>
 
                 {technologies && (
