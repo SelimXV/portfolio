@@ -6,11 +6,15 @@ import ProjectList from "@/app/contentful/test";
 import { fetchProject } from "@/app/contentful/fetchproject";
 import ProjectCard from "@/app/projects/ProjectCard";
 import InfoSection from "@/app/components/InfoSection";
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/react";
+
 
 export default async function Home() {
     const projects = await fetchProject();
 
     return (
+
         <main className="flex min-h-screen flex-col bg-[#121212]">
             <Navbar/>
             <BackgroundBeams className="fixed z-0"/>
@@ -23,47 +27,12 @@ export default async function Home() {
             <div className="flex-grow overflow-y-auto z-10 relative">
                 <ProjectCard projects={projects}/>
             </div>
+            {/* Vercel Fonction */}
+            <SpeedInsights/>
+            <Analytics/>
+
         </main>
     );
 }
 
 
-export const products = [
-    {
-        title: "Cy-Shop",
-        link: "https://github.com/SelimXV/Cy-Shop",
-        thumbnail: "/images/Isagi Yoichi.jpeg",
-        technologies: ["C"],
-    },
-    {
-        title: "PokeNetflix",
-        link: "https://github.com/SelimXV/PokeNetflix",
-        thumbnail: "/images/Denji (1).jpeg",
-        technologies: ["HTML", "CSS"],
-    },
-    {
-        title: "firstPortfolio",
-        link: "https://github.com/SelimXV/portfolioReactJS",
-        thumbnail: "/images/Youru.jpeg",
-        technologies: ["ReactJS", "CSS"],
-    },
-    {
-        title: "TinyCar",
-        link: "https://github.com/SelimXV/TinyCar",
-        thumbnail: "/images/Pinterest image.jpeg",
-        technologies: ["Java"],
-    },
-    {
-        title: "Zootickoon",
-        link: "https://github.com/SelimXV/Zootickoon",
-        thumbnail: "/images/hero-image.jpeg",
-        technologies: ["PHP", "HTML", "CSS"],
-
-    },
-
-    {
-        title: "Test2",
-        link: "https://editrix.ai",
-        thumbnail: "/images/hero-image.jpeg",
-    },
-];
