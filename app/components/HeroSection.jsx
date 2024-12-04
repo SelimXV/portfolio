@@ -43,27 +43,34 @@ const HeroSection = () => {
                                 Contactez-moi
                             </Button>
 
-                            <Button
-                                borderRadius="1.75rem"
-                                className="bg-transparent text-white border border-white hover:border-transparent">
-                                Téléchargez mon CV
-                            </Button>
-
                             <a
-                                href="/documents/Tableau%20Synthèse.xlsx"
+                                href="/documents/CV%20Alternance%20Sélim%20(1).pdf"
                                 download
                             >
+
                                 <Button
                                     borderRadius="1.75rem"
                                     className="bg-transparent text-white border border-white hover:border-transparent">
-                                    Téléchargez ma liste de projets
+                                    Téléchargez mon CV
                                 </Button>
                             </a>
+
+                                <a
+                                    href="/documents/Tableau%20Synthèse.xlsx"
+                                    download
+                                >
+                                    <Button
+                                        borderRadius="1.75rem"
+                                        className="bg-transparent text-white border border-white hover:border-transparent">
+                                        Téléchargez ma liste de projets
+                                    </Button>
+                                </a>
                         </div>
                     </div>
                 </div>
 
-                <div className="col-span-5 place-self-center sm:pl-20 mt-4 lg:mt-0 flex justify-center lg:justify-end relative">
+                <div
+                    className="col-span-5 place-self-center sm:pl-20 mt-4 lg:mt-0 flex justify-center lg:justify-end relative">
                     <div className="rounded-full bg-[#181818] bg-opacity-40 w-[250px] h-[250px] lg:w-[400px] lg:h-[400px] relative flex justify-center items-center">
                         <Image
                             src="/images/hero-image.jpeg"
