@@ -22,9 +22,7 @@ const renderOptions = {
         [BLOCKS.HEADING_3]: (node, children) => (
             <h3 className="text-xl font-medium mb-4 text-blue-300">{children}</h3>
         ),
-        // Autres headings...
         
-        // Listes
         [BLOCKS.UL_LIST]: (node, children) => (
             <ul className="list-disc ml-5 mb-6 text-gray-300 space-y-2">{children}</ul>
         ),
@@ -34,7 +32,7 @@ const renderOptions = {
         [BLOCKS.LIST_ITEM]: (node, children) => (
             <li className="mb-2">{children}</li>
         ),
-        // Hyperliens
+        
         [INLINES.HYPERLINK]: (node, children) => (
             <a
                 href={node.data.uri}
@@ -58,13 +56,13 @@ const Page = async ({ params }) => {
         return (
             <div className="flex min-h-screen flex-col items-center justify-center bg-[#121212]">
                 <h1 className="text-4xl font-bold text-white mb-4">Projet non trouvé</h1>
-                <p className="text-gray-300 mb-8">Le projet que vous recherchez n'existe pas.</p>
+                <p className="text-gray-300 mb-8">Le projet que vous recherchez n&apos;existe pas.</p>
                 <Link 
                     href="/" 
                     className="flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-lg shadow-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition-all duration-300"
                 >
                     <FaArrowLeft />
-                    <span>Retour à l'accueil</span>
+                    <span>Retour à l&apos;accueil</span>
                 </Link>
             </div>
         );
@@ -123,7 +121,7 @@ const Page = async ({ params }) => {
                         {description && (
                             <div className="mb-8">
                                 <h2 className="text-2xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-purple-300 to-pink-400">
-                                    À propos du projet
+                                    &Agrave; propos du projet
                                 </h2>
                                 <p className="text-gray-300">{description}</p>
                             </div>
