@@ -59,8 +59,43 @@ const Navbar = () => {
                     Sélim
                 </Link>
                 
-                <div className="flex items-center">
-                    {/* Bouton de bascule du thème */}
+                {/* Menu desktop - Déplacé le bouton de thème à l'intérieur du menu desktop */}
+                <div className="hidden md:flex md:items-center" id="navbar">
+                    <ul className="flex p-4 md:p-0 md:flex-row md:space-x-8 items-center">
+                        {navLinks.map((link, index) => (
+                            <motion.li 
+                                key={index}
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: index * 0.1 + 0.2 }}
+                            >
+                                <NavLink href={link.href} title={link.title} />
+                            </motion.li>
+                        ))}
+                        {/* Bouton de thème positionné après le dernier lien */}
+                        <motion.li
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: navLinks.length * 0.1 + 0.3 }}
+                        >
+                            <button
+                                onClick={toggleTheme}
+                                className="rounded-full p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900"
+                                aria-label="Toggle theme"
+                            >
+                                {theme === 'dark' ? (
+                                    <SunIcon className="h-6 w-6" />
+                                ) : (
+                                    <MoonIcon className="h-6 w-6" />
+                                )}
+                            </button>
+                        </motion.li>
+                    </ul>
+                </div>
+                
+                {/* Menu mobile */}
+                <div className="flex items-center md:hidden">
+                    {/* Bouton de thème placé à gauche du bouton de menu sur mobile */}
                     <button
                         onClick={toggleTheme}
                         className="rounded-full p-2 mr-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors"
@@ -73,42 +108,23 @@ const Navbar = () => {
                         )}
                     </button>
                     
-                    {/* Menu mobile */}
-                    <div className="mobile-menu block md:hidden">
-                        {!navbarOpen ? (
-                            <button 
-                                onClick={() => setNavbarOpen(true)} 
-                                className="border rounded-lg border-gray-300 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 flex items-center px-3 py-2 transition-all duration-200"
-                                aria-label="Ouvrir le menu"
-                            >
-                                <Bars3Icon className="h-5 w-5" />
-                            </button>
-                        ) : (
-                            <button 
-                                onClick={() => setNavbarOpen(false)} 
-                                className="border rounded-lg border-gray-300 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 flex items-center px-3 py-2 transition-all duration-200"
-                                aria-label="Fermer le menu"
-                            >
-                                <XMarkIcon className="h-5 w-5" />
-                            </button>
-                        )}
-                    </div>
-                </div>
-                
-                {/* Menu desktop */}
-                <div className="menu hidden md:block md:w-auto" id="navbar">
-                    <ul className="flex p-4 md:p-0 md:flex-row md:space-x-8">
-                        {navLinks.map((link, index) => (
-                            <motion.li 
-                                key={index}
-                                initial={{ opacity: 0, y: -10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: index * 0.1 + 0.2 }}
-                            >
-                                <NavLink href={link.href} title={link.title} />
-                            </motion.li>
-                        ))}
-                    </ul>
+                    {!navbarOpen ? (
+                        <button 
+                            onClick={() => setNavbarOpen(true)} 
+                            className="border rounded-lg border-gray-300 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 flex items-center px-3 py-2 transition-all duration-200"
+                            aria-label="Ouvrir le menu"
+                        >
+                            <Bars3Icon className="h-5 w-5" />
+                        </button>
+                    ) : (
+                        <button 
+                            onClick={() => setNavbarOpen(false)} 
+                            className="border rounded-lg border-gray-300 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 flex items-center px-3 py-2 transition-all duration-200"
+                            aria-label="Fermer le menu"
+                        >
+                            <XMarkIcon className="h-5 w-5" />
+                        </button>
+                    )}
                 </div>
             </div>
             
