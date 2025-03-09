@@ -73,6 +73,13 @@ export const ProjectCard = ({ projects }) => {
         [2, 0, -2]
     );
 
+    // Créer un rotateY inversé au lieu d'utiliser .invert()
+    const rotateYReverse = useTransform(
+        scrollYProgress,
+        [0, 0.5, 1],
+        [-2, 0, 2]
+    );
+
     const perspective = useTransform(
         scrollYProgress,
         [0, 0.5, 1],
@@ -153,11 +160,11 @@ export const ProjectCard = ({ projects }) => {
                             ))}
                         </motion.div>
 
-                        {/* Deuxième rangée (direction inverse) */}
+                        {/* Deuxième rangée (direction inverse) - Utilisation de rotateYReverse au lieu de rotateY.invert() */}
                         <motion.div 
                             style={{ 
                                 x: offsetXReverse,
-                                rotateY: rotateY.invert(),
+                                rotateY: rotateYReverse,
                                 perspective: perspective
                             }}
                             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
