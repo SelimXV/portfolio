@@ -63,7 +63,7 @@ export const ProjectCard = ({ projects }) => {
                                 Mes Projets
                             </h2>
                             <p className="text-gray-400 max-w-2xl mx-auto mb-12">
-                                Découvrez mes réalisations et projets récents. Chaque projet représente une opportunité d'apprentissage et une solution à un problème concret.
+                                Découvrez mes réalisations et projets récents. Chaque projet représente une opportunité d&apos;apprentissage et une solution à un problème concret.
                             </p>
                         </div>
                         <div className="project-grid grid grid-cols-1 md:grid-cols-2 gap-8 place-items-center">
@@ -196,7 +196,7 @@ export const Header = () => (
             Mes Projets
         </h2>
         <p className="text-gray-400 max-w-2xl md:mx-0 mx-auto">
-            Découvrez mes réalisations et projets récents. Chaque projet représente une opportunité d'apprentissage et une solution à un problème concret.
+            Découvrez mes réalisations et projets récents. Chaque projet représente une opportunité d&apos;apprentissage et une solution à un problème concret.
         </p>
     </div>
 );

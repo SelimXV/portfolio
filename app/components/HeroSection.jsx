@@ -40,7 +40,7 @@ const HeroSection = () => {
                             </span>
                         </h1>
                         <p className="text-gray-700 dark:text-gray-300 text-base sm:text-lg mb-8 lg:text-xl max-w-md">
-                            Je suis un futur développeur web fullstack passionné par la création d'expériences digitales innovantes.
+                            Je suis un futur développeur web fullstack passionné par la création d&apos;expériences digitales innovantes.
                         </p>
 
                         <div className="flex flex-wrap gap-4 justify-center sm:justify-start">
