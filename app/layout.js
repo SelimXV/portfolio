@@ -14,7 +14,7 @@ export const metadata = {
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    url: "https://www.votre-domaine.fr",
+    url: "selikhal.me",
     title: "Portfolio de Sélim - Développeur Web",
     description: "Portfolio professionnel de Sélim, développeur web fullstack en BTS SIO SLAM",
     images: [{ url: '/images/hero-image.jpeg' }],
