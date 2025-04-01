@@ -55,7 +55,7 @@ const HeroSection = () => {
                             </Button>
 
                             <a
-                                href="/documents/CV%20Alternance%20Sélim%20(1).pdf"
+                                href="/documents/CV_Sélim.pdf"
                                 download
                                 className="inline-block"
                             >
@@ -71,7 +71,7 @@ const HeroSection = () => {
                             </a>
                             
                             <a
-                                href="/documents/Tableau%20Synthèse.xlsx"
+                                href="/documents/Tableau_Synthese.pdf"
                                 download
                                 className="inline-block"
                             >
